@@ -1,0 +1,10 @@
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable\bin\Debug\Lokad.Cqrs.Portable.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable\bin\Debug\Lokad.Cqrs.Portable.pdb
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable\obj\Debug\Cqrs.Portable.csprojResolveAssemblyReference.cache
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable\obj\Debug\Lokad.Cqrs.Portable.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable\obj\Debug\Lokad.Cqrs.Portable.pdb
+D:\src\Tesco\tesco1\Lokad\Cqrs.Portable\bin\Debug\Lokad.Cqrs.Portable.dll
+D:\src\Tesco\tesco1\Lokad\Cqrs.Portable\bin\Debug\Lokad.Cqrs.Portable.pdb
+D:\src\Tesco\tesco1\Lokad\Cqrs.Portable\obj\Debug\Cqrs.Portable.csprojResolveAssemblyReference.cache
+D:\src\Tesco\tesco1\Lokad\Cqrs.Portable\obj\Debug\Lokad.Cqrs.Portable.dll
+D:\src\Tesco\tesco1\Lokad\Cqrs.Portable\obj\Debug\Lokad.Cqrs.Portable.pdb

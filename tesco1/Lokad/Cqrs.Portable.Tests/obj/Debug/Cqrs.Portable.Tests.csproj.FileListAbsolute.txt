@@ -1,0 +1,15 @@
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\Cqrs.Portable.Tests.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\Cqrs.Portable.Tests.pdb
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\Lokad.Cqrs.Portable.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\nunit.framework.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\protobuf-net.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\ServiceStack.Text.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\Lokad.Cqrs.Portable.pdb
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\nunit.framework.xml
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\protobuf-net.pdb
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\protobuf-net.xml
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\ServiceStack.Text.pdb
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\bin\Debug\ServiceStack.Text.xml
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\obj\Debug\Cqrs.Portable.Tests.csprojResolveAssemblyReference.cache
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\obj\Debug\Cqrs.Portable.Tests.dll
+D:\samples\lokad-cqrs-master\lokad-cqrs-master\Cqrs.Portable.Tests\obj\Debug\Cqrs.Portable.Tests.pdb

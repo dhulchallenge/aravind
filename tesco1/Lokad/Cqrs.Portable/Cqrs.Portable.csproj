@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4E2E749C-4D6F-4EF8-8E9D-96D467306997}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lokad.Cqrs</RootNamespace>
+    <AssemblyName>Lokad.Cqrs.Portable</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Lokad.Cqrs.Portable.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AtomicStorage\AddOrUpdateHint.cs" />
+    <Compile Include="AtomicStorage\ExtendDocumentReader.cs" />
+    <Compile Include="AtomicStorage\ExtendDocumentWriter.cs" />
+    <Compile Include="AtomicStorage\FileDocumentReaderWriter.cs" />
+    <Compile Include="AtomicStorage\FileDocumentStore.cs" />
+    <Compile Include="AtomicStorage\IDocumentReader.cs" />
+    <Compile Include="AtomicStorage\IDocumentSerializer.cs" />
+    <Compile Include="AtomicStorage\IDocumentStore.cs" />
+    <Compile Include="AtomicStorage\IDocumentStrategy.cs" />
+    <Compile Include="AtomicStorage\IDocumentWriter.cs" />
+    <Compile Include="AtomicStorage\MemoryDocumentReaderWriter.cs" />
+    <Compile Include="AtomicStorage\MemoryDocumentStore.cs" />
+    <Compile Include="AtomicStorage\NuclearStorage.cs" />
+    <Compile Include="AtomicStorage\NuclearStorageExtensions.cs" />
+    <Compile Include="Build\CqrsEngineBuilder.cs" />
+    <Compile Include="Build\CqrsEngineHost.cs" />
+    <Compile Include="Build\Events.cs" />
+    <Compile Include="DataStreams\CsvStreams.cs" />
+    <Compile Include="Dispatch\DispatcherProcess.cs" />
+    <Compile Include="Dispatch\Events.cs" />
+    <Compile Include="Envelope\AbstractMessageSerializer.cs" />
+    <Compile Include="Envelope\EnvelopeDispatcher.cs" />
+    <Compile Include="Envelope\EnvelopePrinter.cs" />
+    <Compile Include="Envelope\EnvelopeReference.cs" />
+    <Compile Include="Envelope\EnvelopeStreamer.cs" />
+    <Compile Include="Envelope\Events.cs" />
+    <Compile Include="Envelope\IMessageSerializer.cs" />
+    <Compile Include="Envelope\IEnvelopeQuarantine.cs" />
+    <Compile Include="Envelope\MemoryQuarantine.cs" />
+    <Compile Include="Envelope\DuplicationManager.cs" />
+    <Compile Include="Envelope\DuplicationMemory.cs" />
+    <Compile Include="Evil\AssemblyScanEvil.cs" />
+    <Compile Include="Evil\ContractEvil.cs" />
+    <Compile Include="Evil\DecayEvil.cs" />
+    <Compile Include="Evil\InvocationUtil.cs" />
+    <Compile Include="FileStorage.cs" />
+    <Compile Include="FileStorageConfig.cs" />
+    <Compile Include="HideObjectMembersFromIntelliSense.cs" />
+    <Compile Include="IEngineProcess.cs" />
+    <Compile Include="IEnvelopeStreamer.cs" />
+    <Compile Include="ImmediateConsoleObserver.cs" />
+    <Compile Include="ImmutableEnvelope.cs" />
+    <Compile Include="ISystemEvent.cs" />
+    <Compile Include="MemoryStorage.cs" />
+    <Compile Include="MemoryStorageConfig.cs" />
+    <Compile Include="Maybe.cs" />
+    <Compile Include="MessageStore.cs" />
+    <Compile Include="MessageStorePublisher.cs" />
+    <Compile Include="Partition\Events.cs" />
+    <Compile Include="Partition\FileQueueReader.cs" />
+    <Compile Include="Partition\FileQueueWriter.cs" />
+    <Compile Include="Partition\IQueueReader.cs" />
+    <Compile Include="Partition\IQueueWriter.cs" />
+    <Compile Include="Partition\MemoryQueueReader.cs" />
+    <Compile Include="Partition\MemoryQueueWriter.cs" />
+    <Compile Include="Partition\MessageTransportContext.cs" />
+    <Compile Include="Partition\StatelessFileQueueReader.cs" />
+    <Compile Include="RedirectToCommand.cs" />
+    <Compile Include="MessageSender.cs" />
+    <Compile Include="DataStreams\FileStreamContainer.cs" />
+    <Compile Include="DataStreams\IStreamContainer.cs" />
+    <Compile Include="DataStreams\IStreamRoot.cs" />
+    <Compile Include="DataStreams\Exceptions.cs" />
+    <Compile Include="DataStreams\BinaryStreams.cs" />
+    <Compile Include="StorageFramesEvil.cs" />
+    <Compile Include="SystemObserver.cs" />
+    <Compile Include="TapeStorage\FileAppendOnlyStore.cs" />
+    <Compile Include="TapeStorage\IAppendOnlyStore.cs" />
+    <Compile Include="TapeStorage\LockingInMemoryCache.cs" />
+    <Compile Include="TapeStorage\MemoryTape.cs" />
+    <Compile Include="unit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.markdown" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

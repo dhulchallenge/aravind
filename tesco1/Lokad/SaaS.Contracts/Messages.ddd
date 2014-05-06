@@ -1,0 +1,181 @@
+﻿/* 
+   Rinat Abdullin, 2012-07-25.
+
+   This is Lokad DDD/ES definition file that helps to create C# message 
+   contracts for commands and events, along with interfaces for aggregates
+   and aggregate state.
+
+   In order for the generation to happen on-the-fly (when you press Ctrl+S)
+   start DSL.exe right from the Visual Studio and leave it running in the
+   background (detach debugger).
+
+   In order to get nice syntax coloring, simply use C# or C++ file definition.
+   In Visual studio you can do that that via:
+   Menu -> Tools -> Options | Text Editor -> File Extension. There, assign ddd
+   to Microsoft Visual C#.
+
+   Syntax is also compatible with Microsoft Visual C++ with ability to define
+   additional custom keywords by putting text file to 
+   C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\usertypes.dat)
+
+   This syntax is defined specially for designing and modeling systems with
+   Domain-Driven-Design and ES capabilites
+
+*/
+
+
+namespace SaaS;             // put all generated classes into this namespace
+extern "Lokad.SaaS";        // namespace for code contracts over the wire
+// define some commonly used constants (pairs of member type and name), 
+// to avoid typing them over and over again
+
+const user = UserId UserId;
+const registration = RegistrationId RegistrationId;
+const security = SecurityId SecurityId;
+const customer = CustomerId CustomerId;
+
+const description = string Description;
+const dateUtc = DateTime DateUtc;
+const timeUtc = DateTime TimeUtc;
+const email = Email Email;
+
+// define interface substitutes for the standalone contracts below 
+if ? = IFuncCommand;
+if ! = IFuncEvent;
+
+InstanceStarted!(string codeVersion, string role, string instance)
+    explicit "Started {role}. {instance}"
+SendMailMessage?(Email[] to, string subject, string body, bool isHtml, Email[] cc,  Email optionalSender, Email optionalReplyTo)
+MailMessageSent!(ref SendMailMessage)
+EventStreamStarted!()
+MessageQuarantined!(string log, byte[] envelope, string[] contracts, timeUtc)
+
+
+/// start new interface for our application service and aggregate state
+/// all events (maked with ?) will be added as method calls to ISecurityState
+/// public interface ISecurityState
+/// {
+///    void When(SecurityAggregateCreated e);
+///    // etc
+/// }
+/// 
+/// while all commands (marked with !) will be added as method calls to app service
+/// public interface ISecurityApplicationService
+/// {
+///    void When(CreateSecurityAggregate c);
+///    // etc
+/// }
+/// We also declare that each event/command in this definition will have first member 
+/// "SecurityId Id" (you can dine more than one default member
+interface Security (SecurityId Id) 
+{    
+    if ? = ICommand<SecurityId>;
+    if ! = IEvent<SecurityId>;
+
+    const display = string displayName;
+    const token = string token;
+
+    CreateSecurityAggregate? () 
+      explicit "Create security"
+
+    CreateSecurityFromRegistration? (registration, string login, string pwd, display, string optionalIdentity)
+
+    SecurityAggregateCreated! ()
+      explicit "Security group created"
+
+
+    AddSecurityPassword? (display, string login, string password)
+      explicit "Add login '{display}': {login}/{password}"
+    SecurityPasswordAdded! (user, display, string login, string passwordHash, string passwordSalt, string token)
+      explicit "Added login '{display}'  {UserId} with encrypted pass and salt"
+
+    AddSecurityIdentity? (display, string identity)
+      explicit "Add identity '{display}': {identity}"
+    SecurityIdentityAdded! (user, display, string identity, string token)
+      explicit "Added identity '{display}' {user}"
+
+ 
+    RemoveSecurityItem? (user)
+    SecurityItemRemoved! (user, string lookup, string type)
+
+    UpdateSecurityItemDisplayName? (user, display)
+    SecurityItemDisplayNameUpdated! (user, display)
+
+    SecurityRegistrationProcessCompleted! (display, user, token, registration)
+
+    AddPermissionToSecurityItem? (user, string permission)
+    PermissionAddedToSecurityItem! (user, display, string permission, token)
+
+}
+
+interface User (UserId id) 
+{    
+    // holds login information about specific and unique user
+
+    if ? = ICommand<UserId>;
+    if ! = IEvent<UserId>;
+
+
+    CreateUser? (security)
+        explicit "Create user {id} for security {security}."
+
+        UserCreated! (security, TimeSpan activityThreshold)
+            explicit "Created user {id} ({security}) with threshold {activityThreshold}"
+
+    ReportUserLoginFailure? (DateTime timeUtc, string ip)
+      explicit "Report login failure for user {Id} at {timeUtc}"
+
+    UserLoginFailureReported! (DateTime timeUtc, security, string ip)
+        explicit "User {id} login failed at {timeUtc} (via IP '{ip}')"
+
+    ReportUserLoginSuccess? (DateTime timeUtc, string ip)
+        UserLoginSuccessReported! (DateTime timeUtc, security, string ip)
+            explicit "User {Id} logged in at {timeUtc} (via IP '{ip}')"
+
+    LockUser? (string lockReason)
+        explicit "Lock user {Id} with reason '{LockReason}'"
+
+        UserLocked! (string lockReason, security, DateTime lockedTillUtc)
+            explicit "User {Id} locked with reason '{LockReason}'."
+
+    UnlockUser? (string unlockReason)
+    UserUnlocked! (string unlockReason, security)
+
+    DeleteUser? ()
+        UserDeleted! (security)
+            explicit "Deleted user {Id} from security {SecurityId}"
+}
+
+interface Registration (RegistrationId id) 
+{
+    // =====================================
+    if ? = ICommand<RegistrationId>;
+    if ! = IEvent<RegistrationId>;
+
+    RegistrationHttpHeader(string key, string value)
+
+    RegistrationInfo(
+      string ContactEmail, 
+      string CustomerName, 
+      string OptionalUserIdentity,
+      string OptionalUserPassword,
+      string OptionalCompanyPhone,
+      string OptionalCompanyUrl,
+      string OptionalUserDisplay,
+      RegistrationHttpHeader[] headers,
+      DateTime CreatedUtc)
+
+    CreateRegistration? (RegistrationInfo info)
+
+    RegistrationFailed! (RegistrationInfo info, string[] problems)
+    RegistrationCreated! (DateTime registeredUtc, CustomerInfo customer, SecurityInfo security)
+        CustomerInfo(customer, string companyName, string realName, string customerEmail, string optionalPhone, string optionalUrl)
+        SecurityInfo(security, string login, string pwd, string userDisplay, string optionalIdentity)
+
+
+
+    AttachUserToRegistration? (user, string userDisplay, string token)
+    UserAttachedToRegistration! (user, string userDisplay, string token)
+    RegistrationSucceeded! (customer, security, user, string userDisplayName, string userToken)
+    // This is not worth putting into a separate bounded context
+}

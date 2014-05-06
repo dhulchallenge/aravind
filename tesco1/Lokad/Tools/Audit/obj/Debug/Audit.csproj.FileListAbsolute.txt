@@ -1,0 +1,6 @@
+D:\src\Tesco\tesco1\Lokad\Tools\Audit\obj\Debug\Audit.csprojResolveAssemblyReference.cache
+D:\src\Tesco\tesco1\Lokad\Tools\Audit\obj\Debug\Audit.Views.DomainLogView.resources
+D:\src\Tesco\tesco1\Lokad\Tools\Audit\obj\Debug\Audit.Views.LoadSettingsForm.resources
+D:\src\Tesco\tesco1\Lokad\Tools\Audit\obj\Debug\Audit.Views.ModifyMessage.resources
+D:\src\Tesco\tesco1\Lokad\Tools\Audit\obj\Debug\Audit.Properties.Resources.resources
+D:\src\Tesco\tesco1\Lokad\Tools\Audit\obj\Debug\Audit.csproj.GenerateResource.Cache
